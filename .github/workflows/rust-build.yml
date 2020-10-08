@@ -24,6 +24,11 @@ jobs:
         restore-keys: |
           ${{ runner.OS }}-build-
     - name: Build
-      run: cargo build --verbose
+      run: cargo build --release
     - name: Run tests
-      run: cargo test --verbose
+      run: cargo test --release
+    - name: Upload bin
+      uses: actions/upload-artifact@v2
+      with:
+        name: rusty-ocean
+        path: target/release/rusty-ocean
